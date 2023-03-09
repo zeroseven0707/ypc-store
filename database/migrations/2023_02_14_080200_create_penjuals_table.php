@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_toko',40);
             $table->text('deskripsi_toko');
-            $table->enum('status_aktivasi',[1,0]);
+            $table->enum('status_aktivasi',[1,0])->default(0);
             $table->foreignId('idmember');
             $table->timestamps();
         });

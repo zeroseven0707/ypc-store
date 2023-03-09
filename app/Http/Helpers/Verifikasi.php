@@ -15,7 +15,7 @@ function verifikasi(){
                     echo '<a href="/profile"><small class="text-danger" style="position:absolute; margin-top:-10px;">Finish your profile</small></a>';
                 };
             }else{
-                echo '<a href="/profile"><button class="badge bg-success" style="position:absolute; margin-left:-73px; margin-top:-6px;">verified</button></a>';
+                echo '<a href="/profile"><button class="badge bg-success" style="position:absolute; margin-left:-83px; margin-top:-6px;">verified</button></a>';
             }
     }else{
         return $kosong;

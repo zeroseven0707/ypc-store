@@ -1,4 +1,4 @@
-@extends('component.member.sidnavbar')
+@extends('component.member.sidebar')
 @section('content')
     
 <style>
@@ -59,10 +59,10 @@ h1 small {
     color: #757575;
     position: absolute;
     top: 10px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  margin: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin: auto;
 }
 .avatar-upload .avatar-preview {
     width: 192px;
@@ -79,9 +79,11 @@ h1 small {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+}.formprofile{
+    margin-top: 90px;
 }
 </style>
-<form action="/profile/update" method="post" enctype="multipart/form-data" class="">
+<form action="/profile/update" method="post" enctype="multipart/form-data">
     @csrf
     <div class="container">
         <div class="avatar-upload">

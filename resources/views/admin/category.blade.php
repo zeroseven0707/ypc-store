@@ -66,9 +66,10 @@
           </thead>
           <tbody>
             @foreach ($kategori as $item)
+            
             <tr>
-                <td> {{ $item['id'] }}</td>
-                <td> {{ $item['nmkategori'] }}</td>
+                <td> {{ $item->id }}</td>
+                <td> {{ $item->member->nama }}</td>
                 <td>
                   <a href="" data-bs-toggle="modal" data-bs-target="#ModalEdit">
                       <svg xmlns="http://www.w3.org/2000/svg" color="blue" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">

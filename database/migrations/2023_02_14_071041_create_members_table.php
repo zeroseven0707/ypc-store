@@ -22,11 +22,10 @@ return new class extends Migration
             $table->enum('jk',['l','p'])->nullable();
             $table->enum('status_aktif',[1,0])->default(0);
             $table->text('foto')->nullable();
-            $table->foreignId('iduser');
+            $table->foreignId('iduser')->references('id')->on('users');
             $table->timestamps();
         });
-    }
-
+}
     /**
      * Reverse the migrations.
      *

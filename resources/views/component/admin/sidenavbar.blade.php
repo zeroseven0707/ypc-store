@@ -32,8 +32,12 @@
       <div class="navbar-menu-wrapper d-flex align-items-top"> 
         <ul class="navbar-nav">
           <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
+            @if (Level() == 'admin')
             <h1 class="welcome-text">Good Morning, <span class="text-black fw-bold">{{ auth()->user()->username }}</span></h1>
+            @else
+            <h1 class="welcome-text"><span class="text-black fw-bold">{{ namapenjual() }}</span></h1>
             <h3 class="welcome-sub-text">Your performance summary this week </h3>
+            @endif
           </li>
         </ul>
         <ul class="navbar-nav ms-auto">
@@ -104,25 +108,35 @@
                 <span class="badge badge-pill badge-primary float-right">View all</span>
               </a>
               <div class="dropdown-divider"></div>
+              @foreach ($penjual as $item)
               <a class="dropdown-item preview-item">
                 <div class="preview-thumbnail">
-                  <img src="{{ asset('dashboard/images/faces/face10.jpg')  }}" alt="image" class="img-sm profile-pic">
+                  {{-- <img src="{{ asset('storage/'.$item['foto'])  }}" alt="{{ $item['foto'] }}" class="img-sm profile-pic"> --}}
                 </div>
                 <div class="preview-item-content flex-grow py-2">
-                  <p class="preview-subject ellipsis font-weight-medium text-dark">Marian Garner </p>
-                  <p class="fw-light small-text mb-0"> The meeting is cancelled </p>
+                  <p class="preview-subject ellipsis font-weight-medium text-dark">{{ $item['nama_toko'] }}</p>
+                  <p class="fw-light small-text mb-0">{{ $item['no_induk'] }}</p>
                 </div>
               </a>
+              @endforeach
             </div>
           </li>
           {{-- profile --}}
           <li class="nav-item dropdown d-none d-lg-block user-dropdown">
             <a class="nav-link" id="UserDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+              @if (Level() == 'admin')
               <img class="img-xs rounded-circle" src="{{ asset('dashboard/images/faces/face8.jpg') }}" alt="Profile image"> </a>
-            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+              <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
               <div class="dropdown-header text-center">
                 <img class="img-md rounded-circle" src="{{ asset('dashboard/images/faces/face8.jpg') }}" alt="Profile image">
                 <p class="mb-1 mt-3 font-weight-semibold">{{ auth()->user()->username }}</p>
+                @else
+                <img class="img-xs rounded-circle" src="{{ asset('dashboard/images/faces/face8.jpg') }}" alt="Profile image"> </a>
+                <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
+                  <div class="dropdown-header text-center">
+                    <img class="img-md rounded-circle" src="{{ asset('dashboard/images/faces/face8.jpg') }}" alt="Profile image">
+                    <p class="mb-1 mt-3 font-weight-semibold">{{ namapenjual() }}</p>
+                @endif
               </div>
               <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile <span class="badge badge-pill badge-danger">1</span></a>
               <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i> Messages</a>
@@ -322,6 +336,7 @@
             </a>
           </li>
           <li class="nav-item nav-category">Data</li>
+          @if (Level() == "admin")
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <i class="menu-icon mdi mdi-floor-plan"></i>
@@ -331,15 +346,23 @@
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="{{ route('member.view') }}">Member</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ route('product.view') }}">Product</a></li>
                 <li class="nav-item"> <a class="nav-link" href="{{ route('category.view') }}">Category</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('product.view') }}">Product</a></li>
               </ul>
             </div>
           </li>
+          @else
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('product.view') }}">
+              <i class="mdi mdi-grid-large menu-icon"></i>
+              <span class="menu-title">Products</span>
+            </a>
+          </li>
+          @endif
             <li class="nav-item">
               <a class="nav-link" href="index.html">
                 <i class="mdi mdi-grid-large menu-icon"></i>
-                <span class="menu-title">Transaction</span>
+                <span class="menu-title">Pesanan</span>
               </a>
             </li>
             <li class="nav-item">
@@ -354,7 +377,6 @@
       <!-- partial -->
       <div class="main-panel">
         @yield('content')
-        <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
         <footer class="footer">
             <div class="d-sm-flex justify-content-center justify-content-sm-between">

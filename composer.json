@@ -13,6 +13,7 @@
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
+        "livewire/livewire": "^2.12",
         "yajra/laravel-datatables": "^10.1"
     },
     "require-dev": {
@@ -40,11 +41,19 @@
             "app/Http/Helpers/Photouser.php",
             "app/Http/Helpers/MemberKosong.php",
             "app/Http/Helpers/MemberIsi.php",
+            "app/Http/Helpers/Verifikasi.php",
             "app/Http/Helpers/CountMember.php",
             "app/Http/Helpers/CountProduct.php",
             "app/Http/Helpers/CountCategory.php",
+            "app/Http/Helpers/CountToko.php",
             "app/Http/Helpers/ProfileProgres.php",
-            "app/Http/Helpers/Verifikasi.php"
+            "app/Http/Helpers/getPenjual.php",
+            "app/Http/Helpers/CountMemberRequest.php",
+            "app/Http/Helpers/GetIdpenjual.php",
+            "app/Http/Helpers/CountPenjualRequest.php",
+            "app/Http/Helpers/Level.php",
+            "app/Http/Helpers/getNamePenjual.php",
+            "app/Http/Helpers/IdPenjual.php"
         ]
     },
     "scripts": {

@@ -15,6 +15,7 @@ class UserController extends Controller
                 'password'=>bcrypt($request->password)
             ]);
                 Member::create([
+                    'nama'=>$request->nama,
                     'iduser'=>$data['id']
                 ]);
         return redirect('/login');

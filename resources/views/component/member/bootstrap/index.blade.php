@@ -8,7 +8,6 @@
     <style>
         .register{
         background: -webkit-linear-gradient(left, #3931af, #00c6ff);
-        margin-top: 3%;
         padding: 3%;
     }
     .register-left{
@@ -56,20 +55,6 @@
     .register .register-form{
         padding: 10%;
         margin-top: 10%;
-    }
-    .btnRegister{
-        float: right;
-        display: flex;
-        align-items: center;
-        margin-top: 3%;
-        border: none;
-        border-radius: 20px;
-        padding: 2%;
-        background: #0062cc;
-        color: #fff;
-        width: 25%;
-        height: 30px;
-        cursor: pointer;
     }
     .register .nav-tabs{
         margin-top: 3%;

@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Kategori;
+use App\Models\Member;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -26,9 +28,27 @@ class DatabaseSeeder extends Seeder
             'level'=>'admin'
         ]);
         User::create([
+            'username'=>'fathul',
+            'password'=>bcrypt(123),
+            'level'=>'admin'
+        ]);
+        $member = User::create([
             'username'=>'siswa',
             'password'=>bcrypt(123),
             'level'=>'member'
+        ]);
+        Member::create([
+            'nama'=>'Putra Takallam',
+            'iduser'=>$member->id
+        ]);
+        Kategori::create([
+            'nmkategori'=>'pakaian',
+        ]);
+        Kategori::create([
+            'nmkategori'=>'sepatu',
+        ]);
+        Kategori::create([
+            'nmkategori'=>'makanan',
         ]);
     }
 }

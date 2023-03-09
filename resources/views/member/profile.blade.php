@@ -1,14 +1,14 @@
-@extends('component.member.sidnavbar')
+@extends('component.member.sidebar')
 @section('content')
 <div class="container">
     <div class="main-body">
-        <div>
-            <small>Kelengkapan Profile {{ ProfileProgres() }}%</small>
-            <div class="progress mb-3" style="height: 5px">  
-              <div class="progress-bar bg-primary" role="progressbar" style="width: {{ ProfileProgres() }}%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="mt-5">
+          <small>Kelengkapan Profile {{ ProfileProgres() }}%</small>
+          <div class="progress">
+              <div class="progress-bar {{ (ProfileProgres() == 100)?'bg-primary':'bg-danger' }} progress-bar-striped progress-bar-animated" role="progressbar" style="width: {{ ProfileProgres() }}%;" aria-valuenow="{{ ProfileProgres() }}" aria-valuemin="0" aria-valuemax="100">{{ ProfileProgres() }}%</div>
             </div>
           </div>
-          <div class="row gutters-sm">
+          <div class="row gutters-sm mt-5">
             <div class="col-md-4 mb-3">
               <div class="card">
                 <div class="card-body">

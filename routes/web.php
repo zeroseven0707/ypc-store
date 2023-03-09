@@ -28,9 +28,14 @@ Route::get('/profile/edit',[DashboardController::class,'edit']);
 Route::post('/profile/update',[DashboardController::class,'update']);
 Route::get('/member',[AdminController::class,'member'])->name('member.view');
 Route::get('/member/edit/{id}',[MemberController::class,'edit']);
+Route::post('/member/request/edit/{id}',[MemberController::class,'aktif']);
 Route::get('/member/delete/{id}',[MemberController::class,'destroy']);
 Route::get('/product',[AdminController::class,'product'])->name('product.view');
+Route::get('/product/detail/{id}',[ProductController::class,'detail']);
+Route::get('/product/add',[ProductController::class,'create'])->name('product.add');
+Route::post('/product/store',[ProductController::class,'store'])->name('product.store');
 Route::get('/product/edit/{id}',[ProductController::class,'edit']);
+Route::get('/gambar/delete/{id}',[ProductController::class,'destroy_img']);
 Route::post('/product/update/{id}',[ProductController::class,'update']);
 Route::get('/product/delete/{id}',[ProductController::class,'destroy']);
 Route::get('/category',[AdminController::class,'category'])->name('category.view');
@@ -43,7 +48,8 @@ Route::post('/category/create',[CategoryController::class,'store'])->name('categ
 Route::post('/auth',[LoginController::class,'auth'])->name('auth');
 Route::post('/logout',[LoginController::class,'logout'])->name('logout');
 Route::get('/',[MemberController::class,'index']);
-Route::get('/penjual',[PenjualController::class,'index']);
+Route::get('/penjual',[PenjualController::class,'index'])->middleware('vm');
+Route::post('/penjual/create',[PenjualController::class,'store'])->middleware('vm');
 Route::prefix('member')->middleware('auth')->group(function () {
     Route::get('/explore',[MemberController::class,'explore']);
 });

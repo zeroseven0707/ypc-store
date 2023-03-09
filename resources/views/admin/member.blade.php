@@ -7,8 +7,8 @@
     <table id="myTable" class="table table-striped mt-5" style="width:100%">
         <thead>
             <tr>
-                <th>ID User</th>
                 <th>No Induk</th>
+                <th>Username</th>
                 <th>Nama</th>
                 <th>Alamat</th>
                 <th>No HP</th>
@@ -19,8 +19,8 @@
         <tbody>
             @foreach ($member as $item)
             <tr>
-                <td> {{ $item['iduser'] }}</td>
                 <td> {{ ($item['no_induk'] == '')?'belum dilengkapi':$item['no_induk'] }}</td>
+                <td> {{ $item->user->username }}</td>
                 <td> {{ ($item['nama'] == '')?'belum dilengkapi':$item['nama'] }}</td>
                 <td> {{ ($item['alamat'] == '')?'belum dilengkapi':$item['alamat'] }}</td>
                 <td> {{ ($item['no_hp'] == '')?'belum dilengkapi':$item['no_hp'] }}</td>
