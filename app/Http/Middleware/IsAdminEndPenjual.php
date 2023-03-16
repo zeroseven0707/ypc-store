@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class VerifikasiMember
+class IsAdminEndPenjual
 {
     /**
      * Handle an incoming request.
@@ -18,10 +18,16 @@ class VerifikasiMember
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $data = Member::where('iduser','=',Auth::user()->id)->first();
-        if ($data->status_aktif == '0'){
-                return back()->with(['session' => 'Akun Anda belum diverifikasi']);
+        if (Auth::check() && Auth::user()->level == 'admin') {
+            return $next($request);
         }
-        return $next($request);
+        $data = Member::where('iduser',Auth::user()->id)->first();
+        $penjual = Penjual::where('idmember',$data->id)->first();
+        $count = $penjual->id;
+        if($count == NULL){
+            return abort(403);
+        }else{
+            return $next($request);
+        }
     }
 }

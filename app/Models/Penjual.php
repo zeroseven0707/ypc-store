@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Penjual extends Model
@@ -28,5 +29,15 @@ class Penjual extends Model
     public function produk(): HasMany
     {
         return $this->hasMany(Produk::class, 'idpenjual', 'id');
+    }
+
+    /**
+     * Get the user that owns the Penjual
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function member(): BelongsTo
+    {
+        return $this->belongsTo(Member::class, 'idmember', 'id');
     }
 }

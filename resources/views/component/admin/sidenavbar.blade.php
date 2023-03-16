@@ -60,7 +60,7 @@
           {{-- mail/pesan --}}
           <li class="nav-item dropdown">
             <a class="nav-link count-indicator" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
-              <i class="icon-mail icon-lg"></i>
+              <i class="icon-mail icon-lg"></i><span class="badge badge-pill text-danger position-absolute" style="margin-left: -5px;">3</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list pb-0" aria-labelledby="notificationDropdown">
               <a class="dropdown-item py-3 border-bottom">
@@ -115,7 +115,7 @@
                 </div>
                 <div class="preview-item-content flex-grow py-2">
                   <p class="preview-subject ellipsis font-weight-medium text-dark">{{ $item['nama_toko'] }}</p>
-                  <p class="fw-light small-text mb-0">{{ $item['no_induk'] }}</p>
+                  <p class="fw-light small-text mb-0">{{ $item->member->no_induk }}</p>
                 </div>
               </a>
               @endforeach
@@ -131,14 +131,14 @@
                 <img class="img-md rounded-circle" src="{{ asset('dashboard/images/faces/face8.jpg') }}" alt="Profile image">
                 <p class="mb-1 mt-3 font-weight-semibold">{{ auth()->user()->username }}</p>
                 @else
-                <img class="img-xs rounded-circle" src="{{ asset('dashboard/images/faces/face8.jpg') }}" alt="Profile image"> </a>
+                <img class="img-xs rounded-circle" src="{{ asset('storage/'.getPhotoPenjual()) }}" alt="Profile image"> </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="UserDropdown">
                   <div class="dropdown-header text-center">
-                    <img class="img-md rounded-circle" src="{{ asset('dashboard/images/faces/face8.jpg') }}" alt="Profile image">
+                <img class=" rounded-circle" src="{{ asset('storage/'.getPhotoPenjual()) }}" style="width: 50px; height: 50px;" alt="Profile image">
                     <p class="mb-1 mt-3 font-weight-semibold">{{ namapenjual() }}</p>
                 @endif
               </div>
-              <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i> My Profile <span class="badge badge-pill badge-danger">1</span></a>
+              <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-account-outline text-primary me-2"></i>my shop profile</a>
               <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-message-text-outline text-primary me-2"></i> Messages</a>
                 <form action="/logout" method="post">
                     @csrf
@@ -360,7 +360,7 @@
           </li>
           @endif
             <li class="nav-item">
-              <a class="nav-link" href="index.html">
+              <a class="nav-link" href="{{ url('/pesanan') }}">
                 <i class="mdi mdi-grid-large menu-icon"></i>
                 <span class="menu-title">Pesanan</span>
               </a>
@@ -371,6 +371,14 @@
                 <span class="menu-title">Report</span>
               </a>
             </li>
+            @if (Level() == 'member')
+              <li class="nav-item">
+                <a class="nav-link" href="/">
+                  <i class="mdi mdi-grid-large menu-icon"></i>
+                  <span class="menu-title">Kembali</span>
+                </a>
+              </li>
+            @endif
           </li>
         </ul>
       </nav>

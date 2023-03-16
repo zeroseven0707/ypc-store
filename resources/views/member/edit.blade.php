@@ -25,7 +25,7 @@ h1 small {
 .avatar-upload {
     position: relative;
     max-width: 205px;
-    margin: 50px auto;
+    margin: auto;
 }
 .avatar-upload .avatar-edit {
     position: absolute;
@@ -79,13 +79,11 @@ h1 small {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-}.formprofile{
-    margin-top: 90px;
 }
 </style>
+<div class="container-fluid w-75">
 <form action="/profile/update" method="post" enctype="multipart/form-data">
     @csrf
-    <div class="container">
         <div class="avatar-upload">
             <div class="avatar-edit">
                 <input type='file' name="foto" id="imageUpload" accept=".png, .jpg, .jpeg" />
@@ -99,36 +97,36 @@ h1 small {
                 @endif  
             </div>
         </div>
-    </div>
-    <div class="row row-cols-2 g-4 mt-1" style="font-size: 13px">
-        <div class="col">
+    <div class="row row-cols-2 g-2 mt-1" style="font-size: 13px">
+        <div class="col-6 col-md-6">
             <label for="firstname">Username :</label>
             <input type="text" name="username" class="form-control" id="firstname" value="{{ Auth::user()->username}}">
         </div>
-        <div class="col">
-            <label for="nama">Nama :</label>
-            <input type="text" name="nama" class="form-control" id="nama" value="{{ $profile->nama }}">
-        </div>
-        <div class="col">
+        <div class="col-6 col-md-6">
             <label for="noinduk">No Induk :</label>
             <input type="text" name="no_induk" class="form-control" id="noinduk" value="{{ $profile->no_induk }}">
         </div>
-        <div class="col">
+        <div class="col col-md-6">
+            <label for="nama">Nama :</label>
+            <input type="text" name="nama" class="form-control" id="nama" value="{{ $profile->nama }}">
+        </div>
+        <div class="col col-md-6">
             <label for="nohp">No Hp :</label>
             <input type="number" name="no_hp" class="form-control" id="nohp" value="{{ $profile->no_hp }}">
         </div>
-        <div class="col">
+        <div class="col-6 col-md-6">
             <label for="jk">Jenis Kelamin :</label>
-            <select name="jk" id="jk" class="form-control">
-                <option value="l" {{ ($profile->jk == 'l')?'selected':'' }}>Laki-laki</option>
-                <option value="p" {{ ($profile->jk == 'p')?'selected':'' }}>Permpuan</option>
-            </select>
         </div>
-        <div class="col">
+        <div class="col-6 col-md-6">
+            <input type="checkbox" name="jk" id="jk"  value="l" {{ ($profile->jk == 'l')?'checked':'' }}>Laki-laki
+            <input type="checkbox" name="jk" id="jk" value="p" {{ ($profile->jk == 'p')?'checked':'' }}>Perempuan
+        </div>
+        <div class="col-12 col-md-12">
             <label for="alamat">Alamat :</label>
-            <textarea name="alamat" class="form-control" id="alamat" cols="30" rows="10">{{ $profile->alamat}}</textarea>
+            <textarea name="alamat" class="form-control" id="alamat" cols="30" rows="4">{{ $profile->alamat}}</textarea>
         </div>
     </div>
     <button type="submit" class="btn btn-primary w-100 mt-4">Simpan</button>
 </form>
+</div>
 @endsection

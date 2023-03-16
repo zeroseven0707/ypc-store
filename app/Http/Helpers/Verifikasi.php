@@ -4,7 +4,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 if (! function_exists('verifikasi')) {
 function verifikasi(){
-    $data['member'] = Member::where('iduser','=',Auth::user()->id)->first();
+    $data['member'] = Auth::user()->member;
     $count = count($data);
     $kosong=NULL;
     if($count == 1){

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategori;
 use Illuminate\Http\Request;
+use PhpOffice\PhpSpreadsheet\Calculation\Category;
 
 class CategoryController extends Controller
 {
@@ -29,7 +30,8 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         Kategori::create([
-            'nmkategori'=>$request->nmkategori
+            'nmkategori'=>$request->nmkategori,
+            'gambar'=>$request->file('file')->store('img/category')
         ]);
         return back();
     }
@@ -47,7 +49,8 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data['category'] = Kategori::find($id);
+        return view('admin.editcategory',$data);
     }
 
     /**
@@ -56,7 +59,8 @@ class CategoryController extends Controller
     public function update(Request $request, string $id)
     {
         Kategori::find($id)->update([
-            'nmkategori'=>$request->nmkategori
+            'nmkategori'=>$request->nmkategori,
+            'gambar'=>$request->file('file')->store('img/categoriy')
         ]);
         return back();
     }

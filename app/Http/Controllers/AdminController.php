@@ -8,6 +8,7 @@ use App\Models\Penjual;
 use App\Models\Produk;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -17,15 +18,18 @@ class AdminController extends Controller
         return view('admin.member',$data);
     }
     public function product(){
-        $data['product'] = Produk::all();
-        $data['productPenjual'] = Produk::where('idpenjual',getIdPenjual());
+        if (Auth::check() && Auth::user()->level == 'member') {
+            $data['productPenjual'] = Produk::where('idpenjual',getIdPenjual())->get();
+        }elseif (Auth::check() && Auth::user()->level == 'admin') {
+            $data['product'] = Produk::all();
+        }
         $data['penjual'] = Penjual::where('status_aktivasi','0')->get();
         return view('admin.product',$data);
     }
     public function category(){
         $data['penjual'] = Penjual::where('status_aktivasi','0')->get();
-        // $data['kategori'] = Kategori::all();
-        $data['kategori'] = User::all();
+        $data['kategori'] = Kategori::all();
+        // $data['kategori'] = User::all();
         return view('admin.category',$data);
     }
     public function store(Request $request){

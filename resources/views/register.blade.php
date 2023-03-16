@@ -1,8 +1,8 @@
 @extends('component.member.bootstrap.index')
 @section('content')
-<div class="container register">
+<div class="register">
     <div class="row">
-        <div class="col-md-3 register-left p-3">
+        <div class="col-md-3 register-left">
             <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
             <h3>Selamat Datang</h3>
             <p>Siswa Siswa SMK YPC,
@@ -24,19 +24,18 @@
                     <form action="member/create" method="post">
                     @csrf
                     <div class="register-form">
-                            <div class="form-group m-1">
+                            <div class="form-group m-1 p-2">
                                 <input type="text" class="form-control" name="username" placeholder="Username *" value="" />
                             </div>
-                            <div class="form-group m-1">
-                                <input type="text" class="form-control" placeholder="Nama *" name="nama" value="" />
-                            </div>
-                            <div class="form-group m-1">
+                            <div class="form-group m-1 p-2">
                                 <input type="password" class="form-control" placeholder="Password *" name="password" value="" />
                             </div>
-                            <div class="form-group m-1">
+                            <div class="form-group m-1 p-2">
                                 <input type="password" class="form-control"  placeholder="Confirm Password *" name="confirm_password" value="" />
                             </div>
-                              <button class="btn btn-primary mt-2 float-end"> Register</button>
+                            <div class="form-group m-1 p-2">
+                                <button class="btn btn-primary mt-2 float-end"> Register</button>
+                            </div>
                     </div>
                     </form>
                 </div>

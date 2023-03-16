@@ -53,7 +53,10 @@
             "app/Http/Helpers/CountPenjualRequest.php",
             "app/Http/Helpers/Level.php",
             "app/Http/Helpers/getNamePenjual.php",
-            "app/Http/Helpers/IdPenjual.php"
+            "app/Http/Helpers/IdPenjual.php",
+            "app/Http/Helpers/PhotoPenjual.php",
+            "app/Http/Helpers/CountYourOrder.php",
+            "app/Http/Helpers/Iduser.php"
         ]
     },
     "scripts": {

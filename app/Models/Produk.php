@@ -37,4 +37,13 @@ class Produk extends Model
     {
         return $this->belongsTo(Penjual::class, 'idpenjual', 'id');
     }
+    /**
+     * Get all of the comments for the Produk
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function pesanan(): HasMany
+    {
+        return $this->hasMany(Pesanan::class, 'kdproduk', 'id');
+    }
 }

@@ -50,7 +50,7 @@
               </svg>
               <p>Marketplace</p>
             </a>
-            <a href="/member/explore" class="item-menu {{ (Request::is('member/explore'))?'active':'' }}">
+            <a href="/explore" class="item-menu {{ (Request::is('member/explore'))?'active':'' }}">
               <svg fill="currentColor">
                 <mask id="path-1-inside-1_1_101" fill="white">
                   <path
@@ -68,7 +68,7 @@
           </div>
           <div class="section-menu">
             <p class="fs-18 fw-500 mb-2">My Account</p>
-            <a href="#" class="item-menu" onclick="handleClickMenu(this)">
+            <a href="{{ url('yourorder') }}" class="item-menu" onclick="handleClickMenu(this)">
               <svg fill="none">
                 <path
                   d="M15.4559 6.58621V7.08621H15.9559H17.496C18.3534 7.08621 19.0124 7.67074 19.0966 8.36425L19.0966 8.36425L19.0973 8.36975L20.4776 18.7744C20.7115 20.7152 19.0442 22.5 16.7797 22.5H7.22014C4.95566 22.5 3.28838 20.7152 3.52228 18.7743L4.90258 8.36975L4.90261 8.36975L4.90328 8.36425C4.98747 7.67074 5.64646 7.08621 6.50387 7.08621H8.04397H8.54397V6.58621V5.62069C8.54397 3.93794 10.0487 2.5 11.9999 2.5C13.9512 2.5 15.4559 3.93794 15.4559 5.62069V6.58621ZM14.8735 8.03448V7.53448H14.3735H9.62636H9.12636V8.03448V10.4483C9.12636 10.5313 9.03859 10.6724 8.83516 10.6724C8.63174 10.6724 8.54397 10.5313 8.54397 10.4483V8.03448V7.53448H8.04397H6.50387C6.01844 7.53448 5.54941 7.87337 5.48368 8.40043L4.1033 18.8056L4.10327 18.8056L4.1026 18.8111C3.88702 20.5869 5.3988 22.0517 7.22014 22.0517H16.7797C18.6011 22.0517 20.1129 20.5869 19.8973 18.8111L19.8973 18.8111L19.8966 18.8056L18.5162 8.40048C18.4505 7.87339 17.9815 7.53448 17.496 7.53448H15.9559H15.4559V8.03448V10.4483C15.4559 10.5313 15.3681 10.6724 15.1647 10.6724C14.9613 10.6724 14.8735 10.5313 14.8735 10.4483V8.03448ZM14.3735 7.08621H14.8735V6.58621V5.62069C14.8735 4.104 13.5444 2.94828 11.9999 2.94828C10.4555 2.94828 9.12636 4.104 9.12636 5.62069V6.58621V7.08621H9.62636H14.3735ZM9.33516 16C9.33516 15.917 9.42294 15.7759 9.62636 15.7759H14.3735C14.5769 15.7759 14.6647 15.917 14.6647 16C14.6647 16.083 14.5769 16.2241 14.3735 16.2241H9.62636C9.42293 16.2241 9.33516 16.083 9.33516 16Z"
@@ -77,16 +77,20 @@
               </svg>
               <p class="flex-fill">Your Order</p>
               <div class="circle-notif rounded-circle">
-                <p>1</p>
+                @auth
+                <p>{{ yourorder() }}</p>
+                @else
+                <p>0</p>
+                @endauth
               </div>
             </a>
-            <a href="#" class="item-menu" onclick="handleClickMenu(this)">
+            <a href="" class="item-menu" onclick="handleClickMenu(this)">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
                 <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
               </svg>
-              <p>Favorites Shoes</p>
+              <p>Favorites Produks</p>
             </a>
-            <a href="#" class="item-menu" onclick="handleClickMenu(this)">
+            <a href="{{ url('profile/edit') }}" class="item-menu" onclick="handleClickMenu(this)">
               <svg fill="none">
                 <mask id="path-1-inside-1_1_64" fill="white">
                   <path
@@ -128,9 +132,9 @@
           </button>
           <nav class="nav-content gap-5">
             @if ($message = Session::get('session'))
-              <div class="alert alert-danger alert-block">
-                <button type="button" class="close btn" data-dismiss="alert">×</button>	
-                <strong>{{ $message }}</strong>
+              <div class="alert alert-danger alert-dismissible fade show w-75 m-auto" role="alert">
+                <strong>Holy {{ getnama() }}!</strong> {{ $message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
             @endif
             <div class="d-flex gap-3 align-items-center">
@@ -149,7 +153,7 @@
               <div>
                 <div>
                   @auth
-                  @if (getNama() == NULL)
+                  @if (getnama() == NULL)
                   <p class="title-content mb-2">Welcome {{ Auth::user()->username }}</p>
                   @else
                 <p class="title-content mb-2">Welcome {{ getnama() }}</p>

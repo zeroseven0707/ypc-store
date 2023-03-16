@@ -24,6 +24,7 @@ public function edit(){
   return view('member.edit',$data);
 }
  public function update(Request $request){
+  
      Member::where('iduser',Auth::user()->id)->update([
     'no_induk'=>$request->no_induk,
     'nama'=>$request->nama,

@@ -2,14 +2,12 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Member;
-use App\Models\Penjual;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class VerifikasiMember
+class HandleHome
 {
     /**
      * Handle an incoming request.
@@ -18,10 +16,10 @@ class VerifikasiMember
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $data = Member::where('iduser','=',Auth::user()->id)->first();
-        if ($data->status_aktif == '0'){
-                return back()->with(['session' => 'Akun Anda belum diverifikasi']);
+        if (!Auth::check() || Auth::check() && Auth::user()->level == 'member') {
+            return $next($request);
+        }else{
+            return abort(403);
         }
-        return $next($request);
     }
 }

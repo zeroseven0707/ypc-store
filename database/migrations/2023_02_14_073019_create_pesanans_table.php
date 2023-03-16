@@ -15,15 +15,16 @@ return new class extends Migration
     {
         Schema::create('pesanans', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('tanggalpesanan');
             $table->foreignId('kdproduk');
+            $table->foreignId('idmember');
+            $table->string('kode_inv',45)->unique();
             $table->integer('jmlpesanan');
             $table->integer('harga');
+            $table->dateTime('tanggalpesanan');
             $table->enum('statuspesanan',['tunda','batal','dikemas','dikirim','diterima']);
             $table->enum('statuspembayaran',['belum bayar','bayar']);
-            $table->enum('tipepembayaran',['transfer','cod']);
-            $table->text('buktipembayaran');
-            $table->foreignId('idmember');
+            $table->enum('tipepembayaran',['transfer','cod'])->nullable();
+            $table->text('buktipembayaran')->nullable();
             $table->timestamps();
         });
     }

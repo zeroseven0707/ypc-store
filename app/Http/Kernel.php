@@ -65,7 +65,11 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'member' => \App\Http\Middleware\IsMember::class,
         'admin' => \App\Http\Middleware\IsAdmin::class,
-        'vm' => \App\Http\Middleware\VerifikasiMember::class
+        'vm' => \App\Http\Middleware\VerifikasiMember::class,
+        'vp' => \App\Http\Middleware\VerifikasiPenjual::class,
+        'login' => \App\Http\Middleware\IsLogin::class,
+        'handlehome' => \App\Http\Middleware\HandleHome::class,
+        'aksesdashboard' => \App\Http\Middleware\IsAdminEndPenjual::class
 
     ];
 }

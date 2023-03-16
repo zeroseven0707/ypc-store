@@ -34,14 +34,23 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-            Produk::create([
-            'nmproduk' => $request->nmproduk,
-            'deskripsi' => $request->deskripsi,
-            'stok' => $request->stok,
-            'harga' => $request->harga,
-            'idkategori' => $request->idkategori,
-            'idpenjual' => getIdpenjual(),
+        $validatedData = $request->validate([
+            'Nama Produk' => ['required'],
+            'deskripsi' => ['required'],
+            'stok' => ['required'],
+            'harga' => ['required'],
+            'idkategori' => ['required'],
+            'idpenjual' => ['required'],
         ]);
+        Produk::create($validatedData);
+        //     Produk::create([
+        //     'nmproduk' => $request->nmproduk,
+        //     'deskripsi' => $request->deskripsi,
+        //     'stok' => $request->stok,
+        //     'harga' => $request->harga,
+        //     'idkategori' => $request->idkategori,
+        //     'idpenjual' => getIdpenjual(),
+        // ]);
 
         $validatedData = $request->validate([
             'files' => 'required',

@@ -5,10 +5,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 if (! function_exists('getPenjual')) {
 function getPenjual(){
-    $data['member'] = Member::where('iduser','=',Auth::user()->id)->first();
-    $p = $data['member']['id'];
-    $penjual = Penjual::where('idmember',$p)->first();
-
+    $penjual = Auth::user()->member->penjual->id;
     if($penjual == NULL){
         echo '
             <a href="/penjual" class="item-menu" onclick="handleClickMenu(this)">

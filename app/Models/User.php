@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -43,8 +44,18 @@ class User extends Authenticatable
     ];
 
 
-public function member(){
-    return $this->hasMany(Member::class, 'user_id','id');
+/**
+ * Get the user that owns the User
+ *
+ * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+ */
+/**
+ * Get the user that owns the User
+ *
+ * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+ */
+public function member(): BelongsTo
+{
+    return $this->belongsTo(Member::class, 'id', 'iduser');
 }
-
 }

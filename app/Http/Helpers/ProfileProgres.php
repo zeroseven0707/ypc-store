@@ -4,7 +4,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 if (! function_exists('ProfileProgres')) {
 function ProfileProgres(){
-    $data['member'] = Member::where('iduser','=',Auth::user()->id)->first();
+    $data['member'] = Auth::user()->member;
     $no_induk = $data['member']['no_induk'];
     $nama = $data['member']['nama'];
     $alamat = $data['member']['alamat'];
