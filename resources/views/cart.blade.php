@@ -20,8 +20,13 @@
           </div>
           <div class="col-9 col-md-9">
             <h5 class="card-title">{{ $item->produk->nmproduk }}</h5>
-            <p>x{{ $item->jml }}</p>
             <p class="card-text">{{ $item->kode_inv }}</p>
+            <form action="/checkoutcart/{{ $item->id }}" method="post">
+            <div class="input-group mt-3">
+              <button id="dec" class="btn btn-outline-secondary descrement-btn" type="button">-</button>
+              <input type="text" style="width: 40px;" class="border border-1 border-dark text-center" name="jumlah" value="{{ $item->jml }}">
+              <button id="inc" class="btn btn-outline-secondary increment-btn" type="button">+</button> 
+            </div>
           </div>
             </div>
         </div>
@@ -29,10 +34,12 @@
           <div class="col-12 col-md-12">
             Total : {{ $item['total'] }}
           </div>
-          <div class="col-12 col-md-12">
-            <button class="btn btn-danger float-end">Rincian</button>
-          </div>
         </div>
+          @csrf
+          <div class="col-12 col-md-12">
+            <button class="btn btn-danger float-end">Checkout</button>
+          </div>
+        </form>
     </div>
     @endforeach
   </div>

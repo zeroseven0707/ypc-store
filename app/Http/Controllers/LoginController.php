@@ -14,6 +14,11 @@ class LoginController extends Controller
         return view('register');
     }
     public function auth(Request $request){
+        if ($request->username == '') {
+            return back()->with('message','username harus diisi');
+        }if ($request->password == '') {
+            return back()->with('message','Password harus diisi');
+        }
         $credential = $request->only(['username','password']);
         if (Auth::attempt($credential)) {
             if (Auth::user()->level == 'admin') {

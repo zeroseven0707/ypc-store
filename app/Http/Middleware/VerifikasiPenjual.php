@@ -22,7 +22,7 @@ class VerifikasiPenjual
         $penjual = Penjual::where('idmember','=',$data['member']['id'])->first();
         if ($data['member']['status_aktif'] == '1') {
 
-            if ($penjual == NULL) {
+            if (Auth::check() && $penjual == NULL) {
                     return $next($request);
                 }else{
                 return back()->with(['session' => 'Anda Sudah Membuat Toko']);

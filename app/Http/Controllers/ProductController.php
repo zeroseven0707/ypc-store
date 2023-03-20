@@ -34,23 +34,23 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'Nama Produk' => ['required'],
-            'deskripsi' => ['required'],
-            'stok' => ['required'],
-            'harga' => ['required'],
-            'idkategori' => ['required'],
-            'idpenjual' => ['required'],
-        ]);
-        Produk::create($validatedData);
-        //     Produk::create([
-        //     'nmproduk' => $request->nmproduk,
-        //     'deskripsi' => $request->deskripsi,
-        //     'stok' => $request->stok,
-        //     'harga' => $request->harga,
-        //     'idkategori' => $request->idkategori,
-        //     'idpenjual' => getIdpenjual(),
+        // $validatedData = $request->validate([
+        //     'nmproduk' => 'required',
+        //     'deskripsi' => 'required',
+        //     'stok' => 'required',
+        //     'harga' => 'required',  
+        //     'idkategori' => 'required',
+        //     'idpenjual' => 'required',
         // ]);
+        // Produk::create($validatedData);
+            Produk::create([
+            'nmproduk' => $request->nmproduk,
+            'deskripsi' => $request->deskripsi,
+            'stok' => $request->stok,
+            'harga' => $request->harga,
+            'idkategori' => $request->idkategori,
+            'idpenjual' => getIdpenjual(),
+        ]);
 
         $validatedData = $request->validate([
             'files' => 'required',
@@ -71,7 +71,7 @@ class ProductController extends Controller
              }
      
             Gambar::insert($insert);
-            return redirect('/product/add');
+            return redirect('/product');
     }
 
     /**

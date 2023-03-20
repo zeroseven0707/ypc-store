@@ -2,6 +2,11 @@
 @section('content')
 <div class="register">
     <div class="row">
+        @if (Session::get('message'))
+            <div class="alert alert-danger" role="alert">
+                {{ Session::get('message') }}
+            </div>
+        @endif
         <div class="col-md-3 register-left">
             <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
             <h3>Selamat Datang</h3>
@@ -29,9 +34,6 @@
                             </div>
                             <div class="form-group m-1 p-2">
                                 <input type="password" class="form-control" placeholder="Password *" name="password" value="" />
-                            </div>
-                            <div class="form-group m-1 p-2">
-                                <input type="password" class="form-control"  placeholder="Confirm Password *" name="confirm_password" value="" />
                             </div>
                             <div class="form-group m-1 p-2">
                                 <button class="btn btn-primary mt-2 float-end"> Register</button>

@@ -1,22 +1,24 @@
 @extends('component.member.sidnavbar')
 @section('content')
 <section class="bg-white p-4 rounded-4 shadow-sm">
-    <h4 class="title-section-content">Kategori</h4>
+    <h4 class="title-section-content">Kategories</h4>
   <div class="row row-cols-2 g-4 mt-2">
   @foreach ($kat as $kategori)
     <div class="col-md-2 col-6 text-center">
       <div class="card shadow-sm">
-        <img src="{{ asset('storage/'.$kategori['gambar']) }}" class="card-img-top " style="height: 6rem;" alt="...">
-        <div class="card-body">
-          <p class="card-title" style="font-size: 13px;">{{ $kategori['nmkategori'] }}</p>
-        </div>
+        <a href="{{ url('category').'/'.$kategori['id'] }}" class="text-decoration-none text-dark">
+          <img src="{{ asset('storage/'.$kategori['gambar']) }}" class="card-img-top " style="height: 6rem;" alt="...">
+          <div class="card-body">
+            <p class="card-title" style="font-size: 13px;">{{ $kategori['nmkategori'] }}</p>
+          </div>
+        </a>
       </div>
     </div>
     @endforeach
   </div>
 </section>
       <section class="bg-white p-4 rounded-4 shadow">
-          <h4 class="title-section-content">Flash Shale</h4>
+          <h4 class="title-section-content">Products</h4>
         <div class="row g-4 mt-2">
           @foreach ($product as $item)
           <div class="col-md-4">
@@ -38,19 +40,21 @@
               <div>
                 <p class="title-detail">{{ $item['nmproduk'] }}</p>
               </div>
-              <button
-                class="btn btn-fav active"
-                aria-label="Button Favorite"
-                onclick="handleFavorite(this)"
-                >
-                <svg fill="currentColor">
-                  <path
+              <form action="/like/{{ $item['id'] }}" method="post">
+                @csrf
+                <button
+                  class="btn btn-fav active"
+                  aria-label="Button Favorite"
+                  >
+                  <svg fill="currentColor">
+                    <path
                     d="M11.5909 6.09528L12.1213 6.6256L12.6516 6.09528C14.4453 4.30157 17.3535 4.30157 19.1472 6.0953C20.941 7.88902 20.941 10.7972 19.1473 12.591L12.2207 19.5176C12.1658 19.5725 12.0768 19.5725 12.022 19.5176L5.10555 12.6012L5.10485 12.6005L5.0953 12.591C5.09519 12.5909 5.09508 12.5907 5.09497 12.5906C3.30157 10.7969 3.30168 7.88891 5.0953 6.0953C6.88902 4.30158 9.79721 4.30157 11.5909 6.09528Z"
                     stroke="currentColor"
                     stroke-width="2"
                   />
                 </svg>
               </button>
+            </form>
             </div>
             <div class="product-detail pt-4">
               <div>
@@ -80,19 +84,17 @@
         <div class="d-flex gap-4 flex-wrap">
           @foreach ($penjual as $item)
           <div class="store-card">
-            {{-- @foreach ($item->gambartoko as $key=>$gambartoko) --}}
                 <img
                 src="storage/{{ $item->gambartoko['0']['nama_gambar'] }}"
                 alt="Adidas Store"
                 width="410"
                 height="100"
             />
-                {{-- @endforeach --}}
             <div class="store-logo-wrapper">
               <div class="store-logo-circle">
                 @if (count($item->gambartoko) == 2)
                 <img
-                src="storage/{{ $item->gambartoko['1']['nama_gambar'] }}"
+                src="storage/{{ $item->gambartoko['0']['nama_gambar'] }}"
                 alt="Adidas Logo"
                 class="store-logo"
                 />

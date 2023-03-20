@@ -20,14 +20,11 @@ class IsAdminEndPenjual
     {
         if (Auth::check() && Auth::user()->level == 'admin') {
             return $next($request);
-        }
-        $data = Member::where('iduser',Auth::user()->id)->first();
-        $penjual = Penjual::where('idmember',$data->id)->first();
-        $count = $penjual->id;
-        if($count == NULL){
-            return abort(403);
-        }else{
+        }elseif(Auth::user()->member->penjual->status_aktivasi == 1){
             return $next($request);
+        }else{
+            return abort(403);
+        
         }
     }
 }

@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('pesanans', function (Blueprint $table) {
             $table->id();
+            $table->text('slug')->unique();
             $table->foreignId('kdproduk');
             $table->foreignId('idmember');
             $table->string('kode_inv',45)->unique();

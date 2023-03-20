@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 if (! function_exists('getPhotoPenjual')) {
 function getPhotoPenjual(){
-    return Auth::user()->member->penjual->gambartoko;
+    return Auth::user()->member->penjual->gambartoko['0']['nama_gambar'];
 }
 }
 ?>

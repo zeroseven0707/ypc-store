@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
 use App\Models\Member;
 use App\Models\Penjual;
+use App\Models\Produk;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,6 +17,7 @@ class DashboardController extends Controller
   $data['penjual'] = Penjual::where('status_aktivasi','0')->get();
     return view('admin.dashboard')->with($data);
  }
+
  public function profile(){
   $data['profile'] = Member::where('iduser',Auth::user()->id)->first();
    return view('member.profile',$data);

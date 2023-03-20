@@ -12,7 +12,7 @@
                             <label for="namaproduk" class="form-label">Nama Produk</label>
                             <input type="text" class="form-control" id="namaproduk" name="nmproduk">
                         </div>
-                        @error('Nama Produk')
+                        @error('nmproduk')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         <div class="mt-3">

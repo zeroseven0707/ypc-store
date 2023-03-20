@@ -60,9 +60,9 @@ class CategoryController extends Controller
     {
         Kategori::find($id)->update([
             'nmkategori'=>$request->nmkategori,
-            'gambar'=>$request->file('file')->store('img/categoriy')
+            'gambar'=>$request->file('file')->store('img/category')
         ]);
-        return back();
+        return redirect('/category')->with('message','berhasil update Kategori');
     }
 
     /**
@@ -71,6 +71,6 @@ class CategoryController extends Controller
     public function destroy(string $id)
     {
         Kategori::find($id)->delete();
-        return back();
+        return back()->with('error','Data berhasil dihapus');
     }
 }
